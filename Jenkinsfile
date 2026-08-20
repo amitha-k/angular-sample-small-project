@@ -18,10 +18,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh '''
-                    npm install
-                    npm run build
-                '''
+                sh 'npm install'
+                sh 'npm run build'
             }
         }
 
@@ -30,12 +28,11 @@ pipeline {
                 sh '''
                     cd dist
                     zip -r ../${ARTIFACT} .
-                    cd ..
                 '''
             }
         }
 
-        stage('Upload to JFrog') {
+        stage('JFrog Upload') {
             steps {
                 sh '''
                     jf rt upload \
@@ -58,11 +55,11 @@ pipeline {
 
     post {
         success {
-            echo 'Angular application built, uploaded to JFrog, and deployed successfully.'
+            echo 'PIPELINE SUCCESS'
         }
 
         failure {
-            echo 'Pipeline failed.'
+            echo 'PIPELINE FAILED'
         }
     }
 }
