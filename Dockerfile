@@ -1,4 +1,4 @@
-```dockerfile
+
 # ============================================================
 # Stage 1: Build Angular Application
 # ============================================================
@@ -31,5 +31,5 @@ COPY --from=build /app/dist/angular-sample-small-project/browser /usr/share/ngin
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
-```
+
 
